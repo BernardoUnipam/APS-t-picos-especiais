@@ -1,61 +1,110 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# APS 3 – Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 👨‍💻 Autor
 
-## About Laravel
+**Nome:** [Seu Nome Aqui]  
+**Curso:** Sistemas de Informação  
+**Disciplina:** Tópicos Especiais I
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📄 Descrição da Atividade
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Esta aplicação foi desenvolvida como parte da **APS 3** da disciplina **Tópicos Especiais I**, com o objetivo de aplicar os conceitos de estruturação básica em Laravel, utilizando o padrão **MVC (Model-View-Controller)**.
 
-## Learning Laravel
+A proposta da atividade consistiu em:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* Criar controllers, views e rotas GET;
+* Posteriormente, expandir a aplicação para incluir:
+  * Models e migrations;
+  * Formulários para cadastro de dados;
+  * Listagem de registros salvos no banco de dados;
+  * Validação e mensagens de sucesso/erro.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ⚙️ Estrutura Implementada
 
-## Laravel Sponsors
+### 🧩 Controllers
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Foram criados dois controllers, cada um responsável por uma funcionalidade distinta:
 
-### Premium Partners
+* `ProdutoController`
+* `CategoriaController`
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Cada controller contém:
 
-## Contributing
+* O método `index()`, responsável por exibir a view correspondente;
+* O método `store()`, responsável por receber dados via formulário e salvar no banco de dados.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 💾 Models e Migrations
 
-## Code of Conduct
+Foram criados dois models com suas migrations correspondentes:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* **Produto** – campos: `id`, `nome`, `descricao`, `preco`, `created_at`, `updated_at`;
+* **Categoria** – campos: `id`, `nome`, `descricao`, `created_at`, `updated_at`.
 
-## Security Vulnerabilities
+As migrations foram executadas com sucesso, criando as tabelas no banco de dados SQLite.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 🧱 Banco de Dados
 
-## License
+O projeto utiliza **SQLite**, configurado no arquivo `.env` da seguinte forma:
+```env
+DB_CONNECTION=sqlite
+DB_DATABASE=F:\unipam\periodo-4\topicos-especiais-i\atividades\resolucoes\aps-3\database\database.sqlite
+DB_FOREIGN_KEYS=true
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 🖥️ Views (Blade)
+
+Foram criadas duas views:
+
+* `resources/views/produtos/index.blade.php`
+* `resources/views/categorias/index.blade.php`
+
+Cada view contém:
+
+* Um formulário para cadastrar novos registros;
+* Uma listagem dos registros já salvos no banco;
+* Mensagens de validação, sucesso e erro.
+
+### 🌐 Rotas
+
+As rotas foram definidas no arquivo `routes/web.php`:
+```php
+// Produtos
+Route::get('/produtos', [ProdutoController::class, 'index']);
+Route::post('/produtos', [ProdutoController::class, 'store']);
+
+// Categorias
+Route::get('/categorias', [CategoriaController::class, 'index']);
+Route::post('/categorias', [CategoriaController::class, 'store']);
+```
+
+---
+
+## ✅ Funcionalidades Testadas
+
+* A aplicação está rodando com o comando:
+```bash
+php artisan serve
+```
+
+* As páginas `/produtos` e `/categorias` estão acessíveis e funcionais;
+* É possível cadastrar e listar produtos e categorias;
+* Todos os registros são armazenados corretamente no banco SQLite;
+* Mensagens de validação e sucesso aparecem conforme o esperado.
+
+---
+
+## 🏁 Conclusão
+
+Todos os requisitos da **APS 3 – Laravel** foram implementados com sucesso:
+
+* Estrutura MVC completa;
+* Rotas GET e POST configuradas;
+* Banco de dados funcional (SQLite);
+* Formulários e listagem integrados;
+* Código organizado e reutilizável conforme boas práticas do Laravel.
+
+**Status:** ✅ Atividade Concluída com Sucesso
