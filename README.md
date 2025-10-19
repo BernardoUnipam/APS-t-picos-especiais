@@ -2,7 +2,7 @@
 
 ## 👨‍💻 Autor
 
-**Nome:** [Seu Nome Aqui]  
+**Nome:** Bernardo Willian da Cunha  
 **Curso:** Sistemas de Informação  
 **Disciplina:** Tópicos Especiais I
 
